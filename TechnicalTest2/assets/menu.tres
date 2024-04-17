@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cs65fgrv8g60s"]
+
+[ext_resource type="FontFile" uid="uid://bxkphrm1101h2" path="res://assets/m5x7.ttf" id="1_axbp7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq5lf"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt8vm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[resource]
+default_base_scale = 1.0
+default_font = ExtResource("1_axbp7")
+default_font_size = 16
+Button/styles/focus = SubResource("StyleBoxFlat_kq5lf")
+Button/styles/hover = SubResource("StyleBoxFlat_nt8vm")
+Button/styles/normal = SubResource("StyleBoxFlat_nt8vm")

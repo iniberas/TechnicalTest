@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://erfmdi5vcg8l"]
+
+[ext_resource type="Theme" uid="uid://cs65fgrv8g60s" path="res://assets/menu.tres" id="1_80oqm"]
+[ext_resource type="Script" path="res://scenes/over_menu/over_menu.gd" id="1_su67q"]
+
+[node name="OverMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_80oqm")
+script = ExtResource("1_su67q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer/ScoreContainer"]
+layout_mode = 2
+text = "SCORE:"
+
+[node name="ScoreDisplay" type="Label" parent="MarginContainer/HBoxContainer/ScoreContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HighscoreLabel" type="Label" parent="MarginContainer/HBoxContainer/ScoreContainer"]
+layout_mode = 2
+text = "HIGHSCORE:"
+
+[node name="HighsoreDisplay" type="Label" parent="MarginContainer/HBoxContainer/ScoreContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="MenuContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="MarginContainer/HBoxContainer/MenuContainer"]
+layout_mode = 2
+text = "Retry"
+alignment = 0
+
+[node name="MainButton" type="Button" parent="MarginContainer/HBoxContainer/MenuContainer"]
+layout_mode = 2
+text = "Main Menu"
+alignment = 0
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MenuContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MenuContainer/MainButton" to="." method="_on_main_button_pressed"]

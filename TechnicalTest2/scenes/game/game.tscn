@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://t2331e3njcn6"]
+
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_wnn35"]
+[ext_resource type="PackedScene" uid="uid://k8q43ixmnius" path="res://scenes/player/player.tscn" id="2_rklch"]
+[ext_resource type="Texture2D" uid="uid://dgbn46s175ngf" path="res://assets/rupiah.png" id="3_el4i7"]
+[ext_resource type="Texture2D" uid="uid://b2r7p86bsekbg" path="res://assets/arrow.png" id="4_4t0hv"]
+[ext_resource type="Texture2D" uid="uid://c180hlk8rj5ag" path="res://assets/truck.png" id="4_db34y"]
+[ext_resource type="AudioStream" uid="uid://b22fiiwkfyyf2" path="res://assets/money.wav" id="5_v8x4q"]
+[ext_resource type="AudioStream" uid="uid://j1pfhk1v3i5i" path="res://assets/work.wav" id="6_w1ttp"]
+[ext_resource type="Texture2D" uid="uid://bhnmjlkh2bi8i" path="res://assets/work.png" id="7_j34ig"]
+[ext_resource type="PackedScene" uid="uid://cmsqwwgrguj7l" path="res://scenes/interface/interface.tscn" id="11_60kvl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1hgu"]
+size = Vector2(14, 10)
+
+[node name="Game" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_wnn35")
+
+[node name="MoneySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_v8x4q")
+
+[node name="WorkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_w1ttp")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true
+
+[node name="Ground" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, 0, 640, 0)
+width = 1.0
+texture_mode = 1
+
+[node name="HouseGroup" type="Node2D" parent="."]
+
+[node name="Truck" type="Sprite2D" parent="."]
+texture = ExtResource("4_db34y")
+offset = Vector2(-8, -3)
+
+[node name="Goal" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("RectangleShape2D_v1hgu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+position = Vector2(0, -50)
+texture = ExtResource("4_4t0hv")
+
+[node name="Player" parent="." instance=ExtResource("2_rklch")]
+position = Vector2(32, 0)
+
+[node name="MoneyParticle" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("3_el4i7")
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, -32)
+initial_velocity_min = 16.0
+initial_velocity_max = 24.0
+
+[node name="WorkParticle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("7_j34ig")
+emission_shape = 3
+emission_rect_extents = Vector2(8, 8)
+spread = 180.0
+gravity = Vector2(0, -8)
+initial_velocity_min = 6.0
+initial_velocity_max = 18.0
+
+[node name="Interface" parent="." instance=ExtResource("11_60kvl")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Goal" to="." method="_on_goal_area_entered"]

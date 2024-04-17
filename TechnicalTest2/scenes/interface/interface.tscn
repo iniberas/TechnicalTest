@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmsqwwgrguj7l"]
+
+[ext_resource type="Script" path="res://scenes/interface/interface.gd" id="1_8cnpg"]
+[ext_resource type="Theme" uid="uid://cs65fgrv8g60s" path="res://assets/menu.tres" id="2_rfsh7"]
+
+[node name="Interface" type="CanvasLayer"]
+script = ExtResource("1_8cnpg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("2_rfsh7")
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="TimeDisplay" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "60"
+
+[node name="ScoreDisplay" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "0"
+horizontal_alignment = 2
